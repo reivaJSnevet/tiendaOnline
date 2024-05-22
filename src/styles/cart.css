@@ -1,0 +1,48 @@
+.cart {
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cart__title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.cart-item__name {
+    font-size: 1rem;
+    color: #333;
+}
+
+.cart-item__price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #00bcd4; /* Light blue to match theme */
+}
+
+.cart-item__button {
+    background-color: #f44336; /* Red color for removal button */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.cart-item__button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}

@@ -1,0 +1,52 @@
+/* Search Bar Styles */
+.search-bar {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 25%;
+    min-width: 300px;
+}
+
+@media (max-width: 400px) { /* Ajustado para cubrir dimensiones del Apple Watch y similares */
+    .search-bar {
+        width: 90%; /* Aumenta el porcentaje de ancho para pequeñas pantallas */
+        min-width: 120px; /* Un ancho mínimo más realista para dispositivos muy pequeños */
+    }
+}
+
+.search-bar__input {
+    padding: 10px;
+    width: 100%; /* Ensures input field takes remaining space */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+@media (max-width: 400px) {
+    .search-bar__input {
+        font-size: 0.7rem; /* Reduce el tamaño de la fuente para que coincida con las dimensiones reducidas */
+    }
+}
+
+.search-bar__button {
+    padding: 10px 20px;
+    background-color: #00bcd4; /* Matches navbar color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+@media (max-width: 400px) {
+    .search-bar__button {
+        padding: 1px 4px; /* Reduce el padding para un tamaño más compacto */
+        font-size: 0.7rem; /* Reduce el tamaño de la fuente para que coincida con las dimensiones reducidas */
+    }
+}
+
+.search-bar__button:hover {
+    background-color: #0097a7; /* Darker shade for hover effect */
+}

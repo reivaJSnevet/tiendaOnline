@@ -1,0 +1,39 @@
+.navbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #00bcd4;
+    color: white;
+    padding: 10px 20px;
+  }
+  
+  .navbar__link {
+    display: flex;
+    align-items: center;
+    color: white; /* Mantiene el texto blanco */
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    padding: 8px 16px;
+    border-radius: 5px; /* Bordes redondeados para los enlaces */
+    transition: background-color 0.3s ease; /* Transición suave al cambiar el fondo */
+  }
+  
+  .navbar__link:hover {
+    background-color: #00a1ba;
+  }
+  
+  .navbar__icon {
+    margin-right: 8px; /* Espacio entre el icono y el texto */
+    font-size: 20px; /* Tamaño del icono */
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column; /* Alinea los enlaces verticalmente en pantallas pequeñas */
+    }
+    .navbar__link {
+      width: 100%; /* Los enlaces ocupan todo el ancho */
+      justify-content: center; /* Centra el contenido de los enlaces */
+      margin: 5px 0; /* Añade un margen entre los enlaces */
+    }
+  }
+  

@@ -1,0 +1,58 @@
+.orders-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.orders-page__title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.orders-page__empty {
+    font-size: 1em;
+    color: #666;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.order-item__name {
+    font-size: 1rem;
+    color: #333;
+}
+
+.order-item__price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #00bcd4; /* Matching the color theme */
+}
+
+.order-item__button {
+    background-color: #f44336; /* Red color for the return button */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.order-item__button:hover {
+    background-color: #d32f2f; /* Darker shade of red for hover effect */
+}

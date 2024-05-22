@@ -1,0 +1,33 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Toma toda la altura de la ventana */
+  }
+  
+  .layout__navbar,
+  .layout__footer {
+    flex-shrink: 0; /* Evita que Navbar y Footer se compriman */
+  }
+  
+  .layout__content {
+    flex: 1; /* El contenido toma todo el espacio restante */
+    overflow-y: auto; /* Añade scroll si el contenido es muy largo */
+  }
+  
+  /* Estilos adicionales para asegurar que la navbar y el footer tengan tamaños fijos */
+  .layout__navbar {
+    height: 60px; /* Altura fija para la navbar */
+    background-color: #f0f0f0; /* Color de fondo para la navbar */
+  }
+  
+  .layout__footer {
+    height: 40px; /* Altura fija para el footer */
+    background-color: #d0d0d0; /* Color de fondo para el footer */
+  }
+  
+  @media (max-width: 768px) {
+    .layout__navbar, .layout__footer {
+      height: 50px; /* Altura más pequeña para dispositivos móviles */
+    }
+  }
+  
