@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProductList from '../components/ProductList';
 import SearchBar from '../components/SearchBar';
 
-
-
-const Home = ({ products, onAddToCart }) => {
+const Home = ( {products, onAddToCart} ) => {
     const [filteredProducts, setFilteredProducts] = useState(products);
 
+    useEffect(() => {
+        setFilteredProducts(products);
+    }, [products]);
+    
     const handleSearch = (query) => {
         const filtered = products.filter(product =>
             product.name.toLowerCase().includes(query.toLowerCase())
@@ -18,7 +20,14 @@ const Home = ({ products, onAddToCart }) => {
     return (
         <div className="home">
             <SearchBar onSearch={handleSearch} />
-            <ProductList products={filteredProducts} onAddToCart={onAddToCart} />
+           {
+                products.length > 0 ? (
+                     <ProductList products={filteredProducts} onAddToCart={onAddToCart} />
+                ) : (
+                     <p>Loading...</p>
+                )
+              
+           }
         </div>
     );
 };
