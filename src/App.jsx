@@ -1,31 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect  } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
 import CartPage from './pages/CartPage';
 import OrdersPage from './pages/OrdersPage';
+import api from './db/api';
 import './App.css';
-import Layout from './components/layout/Layout';
 
-// Datos de ejemplo
-// Datos de ejemplo en App.jsx
-const products = [
-    { id: 1, name: 'Camisa azul', shortDescription: 'Camisa de marca de color azul', longDescription: 'Long description of headphones', image: 'https://caterpillarcr.com/cdn/shop/files/2610628_12815_Standard-Stone.jpg?v=1695391085', price: '$50' },
-    { id: 2, name: 'Camisa manga larga roja', shortDescription: 'Camisa manga larga de color roja de tipo formal', longDescription: 'Long description of smartphone', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj9bmOSudJTGyarr33VwWpFnPyWZwAw8ankISM44J4yQ&s', price: '$300' },
-    { id: 3, name: 'Vestido rojo', shortDescription: 'Vestido rojo con cinta en la cintura y patrón de flores', longDescription: 'Long description of laptop', image: 'https://images-cdn.ubuy.co.in/65564d4e2c4e15509810f25b-cdress-women-39-s-short-homecoming.jpg', price: '$800' },
-
-    { id: 4, name: 'Blusa celeste', shortDescription: 'Blusa de corta de color celeste', longDescription: 'Long description of watch', image: 'https://www.shutterstock.com/image-photo/woman-blouse-blue-cotton-on-260nw-2075948374.jpg', price: '$150' },
-    { id: 5, name: 'Medias largas de mujer', shortDescription: 'Medias larga para mujer ', longDescription: 'Long description of camera', image: 'https://cdn.webshopapp.com/shops/256256/files/366297763/800x1067x3/medias-largas-basicas-70d.jpg', price: '$400' },
-    
-    
-  ];
-  
 
 function App() {
+  const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [orders, setOrders] = useState([]);
 
+  useEffect(() => {
+    api.get('/products')
+        .then(response => {
+            setProducts(response.data);
+            console.log(response.data);
+        })
+        .catch(error => console.error(error));
+}
+, []);
+
   const handleAddToCart = (productId) => {
+    if (cartItems.find(item => item.id === productId)) return;
     const product = products.find(p => p.id === productId);
     setCartItems([...cartItems, product]);
   };
