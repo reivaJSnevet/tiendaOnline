@@ -1,0 +1,70 @@
+/* Product Detail Page Styles */
+.product-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-detail__image {
+    width: 100%;
+    max-width: 400px; /* Limita el tamaño máximo de la imagen */
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.product-detail__title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-detail__description {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.product-detail__price {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #00bcd4; /* Light blue color to match theme */
+    margin-bottom: 20px;
+}
+
+.product-detail__stock {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.product-detail__button {
+    padding: 10px 20px;
+    background-color: #00bcd4; /* Matches navbar color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.product-detail__button:hover {
+    background-color: #0097a7; /* Darker shade of light blue for hover effect */
+}
+
+.product-detail__not-found {
+    font-size: 1.5em;
+    color: #ff6347; /* Tomato red for error messages */
+    text-align: center;
+    margin: 50px auto;
+}
