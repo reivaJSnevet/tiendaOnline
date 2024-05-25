@@ -12,7 +12,6 @@ import './App.css';
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [orders, setOrders] = useState([]);
   const cart = useCartStore(state => state.cart);
   const order = useOrderStore(state => state.order);
   const clearCart = useCartStore(state => state.clearCart);
@@ -25,7 +24,6 @@ function App() {
                 return {...product, price: parseFloat(product.price)};
             });
             setProducts(priceToFloat);
-            console.log(response.data);
         })
         .catch(error => console.error(error));
 }
@@ -41,17 +39,13 @@ function App() {
     });
   };
 
-  const handleReturnOrder = (productId) => {
-    setOrders(orders.filter(order => order.id !== productId));
-  };
-
   return (
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route path="/" element={<Home products={products} />}/>
             <Route path="/product/:productId" element={<ProductDetail products={products} />} />
             <Route path="/cart" element={<CartPage onCheckout={handleCheckout} />} />
-            <Route path="/orders" element={<OrdersPage orders={orders} onReturn={handleReturnOrder} />} />
+            <Route path="/orders" element={<OrdersPage/>} />
           </Route>
         </Routes>
   );
