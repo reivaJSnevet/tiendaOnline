@@ -6,37 +6,39 @@ import ProductDetail from './pages/ProductDetail';
 import CartPage from './pages/CartPage';
 import OrdersPage from './pages/OrdersPage';
 import api from './db/api';
+import useCartStore from './stores/cartStore';
+import useOrderStore from './stores/orderStore';
 import './App.css';
-
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
   const [orders, setOrders] = useState([]);
+  const cart = useCartStore(state => state.cart);
+  const order = useOrderStore(state => state.order);
+  const clearCart = useCartStore(state => state.clearCart);
+  const clearOrder = useOrderStore(state => state.clearOrder);
 
   useEffect(() => {
     api.get('/products')
         .then(response => {
-            setProducts(response.data);
+            const priceToFloat = response.data.map(product => {
+                return {...product, price: parseFloat(product.price)};
+            });
+            setProducts(priceToFloat);
             console.log(response.data);
         })
         .catch(error => console.error(error));
 }
 , []);
 
-  const handleAddToCart = (productId) => {
-    if (cartItems.find(item => item.id === productId)) return;
-    const product = products.find(p => p.id === productId);
-    setCartItems([...cartItems, product]);
-  };
-
-  const handleRemoveFromCart = (productId) => {
-    setCartItems(cartItems.filter(item => item.id !== productId));
-  };
-
   const handleCheckout = () => {
-    setOrders([...orders, ...cartItems]);
-    setCartItems([]);
+    const items = cart
+
+    api.post('/orders', { order, items }).then(response => {
+        console.log(response.data);
+        clearCart();
+        clearOrder();
+    });
   };
 
   const handleReturnOrder = (productId) => {
@@ -46,9 +48,9 @@ function App() {
   return (
         <Routes>
           <Route path='/' element={<Layout />}>
-            <Route path="/" element={<Home products={products} onAddToCart={handleAddToCart} />}/>
-            <Route path="/product/:productId" element={<ProductDetail products={products} onAddToCart={handleAddToCart} />} />
-            <Route path="/cart" element={<CartPage cartItems={cartItems} onRemove={handleRemoveFromCart} onCheckout={handleCheckout} />} />
+            <Route path="/" element={<Home products={products} />}/>
+            <Route path="/product/:productId" element={<ProductDetail products={products} />} />
+            <Route path="/cart" element={<CartPage onCheckout={handleCheckout} />} />
             <Route path="/orders" element={<OrdersPage orders={orders} onReturn={handleReturnOrder} />} />
           </Route>
         </Routes>

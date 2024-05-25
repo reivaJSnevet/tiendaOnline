@@ -1,9 +1,21 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import useCartStore from '../stores/cartStore';
 import '../styles/product-card.css';
 
-const ProductCard = ({ product, onAddToCart }) => {
+const ProductCard = ({ product }) => {
     const navigate = useNavigate();
+    const addToCart = useCartStore(state => state.addToCart);
+
+    const handleAddToCart = () => {
+        addToCart(
+            {   
+                ...product,
+                productId: product.id,
+                quantity: 1
+            }
+        )
+    };
 
     return (
         <div className="product-card">
@@ -12,7 +24,7 @@ const ProductCard = ({ product, onAddToCart }) => {
             <p className="product-card__description">{product.description}</p>
             <p className="product-card__price">${product.price}</p>
             <div className="product-card__button-container">
-                <button className="product-card__button" onClick={() => onAddToCart(product.id)}>Add to Cart</button>
+                <button className="product-card__button" onClick={() => handleAddToCart()}>Add to Cart</button>
                 <button className="product-card__button" onClick={()=> navigate(`/product/${product.id}`)}>View Details</button>
             </div>
             <p className="product-card__stock">Stock: {product.stock}</p>
@@ -22,7 +34,6 @@ const ProductCard = ({ product, onAddToCart }) => {
 
 ProductCard.propTypes = {
     product: PropTypes.object.isRequired,
-    onAddToCart: PropTypes.func.isRequired
 };
 
 

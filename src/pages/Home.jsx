@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import ProductList from '../components/ProductList';
 import SearchBar from '../components/SearchBar';
 
-const Home = ( {products, onAddToCart} ) => {
+const Home = ( {products} ) => {
     const [filteredProducts, setFilteredProducts] = useState(products);
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const Home = ( {products, onAddToCart} ) => {
             <SearchBar onSearch={handleSearch} />
            {
                 products.length > 0 ? (
-                     <ProductList products={filteredProducts} onAddToCart={onAddToCart} />
+                     <ProductList products={filteredProducts} />
                 ) : (
                      <p>Loading...</p>
                 )
@@ -34,7 +34,6 @@ const Home = ( {products, onAddToCart} ) => {
 
 Home.propTypes = {
     products: PropTypes.array.isRequired,
-    onAddToCart: PropTypes.func.isRequired
 };
 
 

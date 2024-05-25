@@ -1,10 +1,21 @@
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
+import useCartStore from '../stores/cartStore';
 import '../styles/product-detail.css';
 
-const ProductDetail = ({ products, onAddToCart }) => {
+const ProductDetail = ({ products }) => {
   const { productId } = useParams();
+  const addToCart = useCartStore(state => state.addToCart);
   const product = products.find(p => p.id === parseInt(productId));
+
+  const handleAddToCart = () => {
+    addToCart({
+        ...product,
+        productId: product.id,
+        quantity: 1
+    });
+  }
+
 
   if (!product) {
     return <div className="product-detail__not-found">Product not found</div>;
@@ -16,15 +27,13 @@ const ProductDetail = ({ products, onAddToCart }) => {
       <h1 className="product-detail__title">{product.name}</h1>
       <p className="product-detail__description">{product.description}</p>
       <p className="product-detail__price">{product.price}</p>
-      <button className="product-detail__button" onClick={() => onAddToCart(product.id)}>Add to Cart</button>
+      <button className="product-detail__button" onClick={() => handleAddToCart()}>Add to Cart</button>
       <p className="product-detail__stock">Stock: {product.stock}</p>
     </div>
   );
 };
 
 ProductDetail.propTypes = {
-    products: PropTypes.array.isRequired,
-    onAddToCart: PropTypes.func.isRequired
-};
+    products: PropTypes.array.isRequired,};
 
 export default ProductDetail;
