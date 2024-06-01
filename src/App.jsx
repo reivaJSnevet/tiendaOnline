@@ -22,12 +22,20 @@ function App() {
     useEffect(() => {
         api.get('/products')
             .then(response => {
-                const priceToFloat = response?.data.map(product => {
-                    return { ...product, price: parseFloat(product.price) };
-                });
-                setProducts(priceToFloat);
+                if (response.data) {
+                    const priceToFloat = response.data.map(product => {
+                        return {
+                            ...product,
+                            price: parseFloat(product.price)
+                        };
+                    }
+                    );
+                    setProducts(priceToFloat);
+                } else {
+                    setProducts([]);
+                    console.log('No products found');
+                }
             })
-            .catch(error => console.error(error));
     }, [order]);
 
 
