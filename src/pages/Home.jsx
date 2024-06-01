@@ -17,9 +17,19 @@ const Home = ( {products} ) => {
         setFilteredProducts(filtered);
     };
 
+    const handleFilter = (categoryId) => {
+        console.log(categoryId);
+        if (categoryId === 'all') {
+            setFilteredProducts(products);
+        } else {
+            const filtered = products.filter(product => product.categoryId == categoryId);
+            setFilteredProducts(filtered);
+        }
+    }
+
     return (
         <div className="home">
-            <SearchBar onSearch={handleSearch} />
+            <SearchBar onSearch={handleSearch} onFilter={handleFilter}/>
            {
                 products.length > 0 ? (
                      <ProductList products={filteredProducts} />

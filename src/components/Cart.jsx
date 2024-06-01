@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import useCartStore from '../stores/cartStore';
 import '../styles/cart.css';
 
-const Cartcard = ({ cartItem}) => {
+const Cartcard = ({ cartItem }) => {
     const removeFromCart = useCartStore(state => state.removeFromCart);
     const updateQuantity = useCartStore(state => state.updateQuantity);
 
@@ -13,6 +13,7 @@ const Cartcard = ({ cartItem}) => {
 
     return (
         <div key={cartItem.id} className="cart-item">
+            <img src={cartItem.imageUrl} alt={cartItem.name} className="cart-item__image" />
             <span className="cart-item__name">{cartItem.name} x {cartItem.quantity}</span>                    
             <div className="cart-item__quantity">
                 <button className="cart-item__buttona" onClick={() => handleQuantityChange(-1)}>-</button>
@@ -51,3 +52,4 @@ Cart.propTypes = {
 
 
 export default Cart;
+
