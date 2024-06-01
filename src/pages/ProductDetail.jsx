@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import useCartStore from '../stores/cartStore';
 import '../styles/product-detail.css';
 
@@ -14,6 +15,7 @@ const ProductDetail = ({ products }) => {
         productId: product.id,
         quantity: 1
     });
+    toast.success(`${product.name} added to cart!`);
   }
 
 
