@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://tiendaonline-api-production.up.railway.app/api/';
+const baseURL = 'https://tiendaonline-api-production.up.railway.app/api/';
 
 const api = axios.create({
     baseURL,
