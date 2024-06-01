@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import ProductList from '../components/ProductList';
 import SearchBar from '../components/SearchBar';
 
-const Home = ( {products} ) => {
+const Home = ( {products = []} ) => {
     const [filteredProducts, setFilteredProducts] = useState(products);
 
     useEffect(() => {
@@ -11,7 +11,7 @@ const Home = ( {products} ) => {
     }, [products]);
     
     const handleSearch = (query) => {
-        const filtered = products.filter(product =>
+        const filtered = products?.filter(product =>
             product.name.toLowerCase().includes(query.toLowerCase())
         );
         setFilteredProducts(filtered);

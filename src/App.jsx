@@ -22,7 +22,7 @@ function App() {
     useEffect(() => {
         api.get('/products')
             .then(response => {
-                const priceToFloat = response?.data?.map(product => {
+                const priceToFloat = response?.data.map(product => {
                     return { ...product, price: parseFloat(product.price) };
                 });
                 setProducts(priceToFloat);
