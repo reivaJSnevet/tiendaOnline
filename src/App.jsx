@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,7 +22,7 @@ function App() {
     useEffect(() => {
         api.get('/products')
             .then(response => {
-                const priceToFloat = response.data.map(product => {
+                const priceToFloat = response?.data?.map(product => {
                     return { ...product, price: parseFloat(product.price) };
                 });
                 setProducts(priceToFloat);
@@ -34,7 +34,7 @@ function App() {
     const handleCheckout = () => {
         const items = cart;
 
-        api.post('/orders', { order, items }).then(response => {
+        api.post('/orders', { order, items }).then( () => {
             clearCart();
             clearOrder();
         });

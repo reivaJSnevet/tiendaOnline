@@ -7,7 +7,7 @@ const useCartStore = create((set) => ({
     const existingProduct = state.cart.find(item => item.productId === product.productId);
     if (existingProduct) {
       return {
-        cart: state.cart.map(item =>
+        cart: state.cart?.map(item =>
           item.productId === product.productId
             ? { ...item, quantity: item.quantity + product.quantity }
             : item
@@ -21,7 +21,7 @@ const useCartStore = create((set) => ({
     cart: state.cart.filter(item => item.productId !== productId)
   })),
   updateQuantity: (productId, quantity) => set((state) => ({
-    cart: state.cart.map(item =>
+    cart: state?.cart?.map(item =>
       item.productId === productId ? { ...item, quantity } : item
     )
   })),

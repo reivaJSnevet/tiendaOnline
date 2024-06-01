@@ -33,7 +33,7 @@ const Cart = ({ cart, total }) => {
         <div className="cart">
             <h2 className="cart__title">Shopping Cart</h2>
             <p className="cart__total">Total: ${total.toFixed(2)}</p>
-            { cart && cart.map(cartItem => (
+            { cart && cart?.map(cartItem => (
                 <Cartcard key={cartItem.id} cartItem={cartItem} total={total}/>
             ))}
         </div>

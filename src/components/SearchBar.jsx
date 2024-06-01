@@ -34,7 +34,7 @@ const SearchBar = ({ onSearch, onFilter}) => {
             className="category-filter__select"
         >
             <option value="all">All</option>
-            {categories.map((category) => (
+            {categories?.map((category) => (
             <option key={category.id} value={category.id}>
                 {category.name}
             </option>
