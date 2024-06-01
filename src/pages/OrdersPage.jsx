@@ -9,7 +9,6 @@ const OrdersPage = () => {
         api.get('orders/user/1')
             .then(response => {
                 setOrders(response.data);
-                console.log(response.data);
             })
             .catch(error => console.error(error));
     }, []); 

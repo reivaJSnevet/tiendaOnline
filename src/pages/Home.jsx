@@ -18,7 +18,6 @@ const Home = ( {products} ) => {
     };
 
     const handleFilter = (categoryId) => {
-        console.log(categoryId);
         if (categoryId === 'all') {
             setFilteredProducts(products);
         } else {

@@ -14,7 +14,6 @@ const SearchBar = ({ onSearch, onFilter}) => {
             try {
                 const response = await api.get('/categories');
                 setCategories(response.data);
-                console.log(response.data);
             } catch (error) {
                 console.error(error);
             }

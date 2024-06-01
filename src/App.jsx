@@ -26,7 +26,6 @@ function App() {
                     return { ...product, price: parseFloat(product.price) };
                 });
                 setProducts(priceToFloat);
-                console.log(priceToFloat);
             })
             .catch(error => console.error(error));
     }, [order]);
@@ -36,7 +35,6 @@ function App() {
         const items = cart;
 
         api.post('/orders', { order, items }).then(response => {
-            console.log(response.data);
             clearCart();
             clearOrder();
         });
